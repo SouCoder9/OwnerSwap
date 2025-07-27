@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import DebugAuth from '../components/DebugAuth';
+
 import { 
   FiSearch, 
   FiDollarSign, 
@@ -214,12 +214,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Debug Section - Remove in production */}
-      <section className="py-20 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <DebugAuth />
-        </div>
-      </section>
     </div>
   );
 };
