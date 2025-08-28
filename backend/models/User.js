@@ -23,7 +23,13 @@ const userSchema = new mongoose.Schema({
   contactNumber: {
     type: String,
     trim: true,
-    match: [/^[\+]?[1-9][\d]{0,15}$/, 'Please provide a valid contact number']
+    validate: {
+      validator: function(number) {
+        // Allow empty string or valid international phone number format
+        return !number || /^\+?[1-9]\d{1,14}$/.test(number.replace(/\s/g, ''));
+      },
+      message: 'Please provide a valid contact number with country code (e.g., +1234567890)'
+    }
   },
   createdAt: {
     type: Date,

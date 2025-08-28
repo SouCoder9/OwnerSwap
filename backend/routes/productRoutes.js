@@ -52,7 +52,7 @@ router.post('/', authenticate, upload.array('images', 5), [
       });
     }
 
-    const { title, description, price, category, contactInfo } = req.body;
+    const { title, description, price, category, contactInfo, whatsappNumber } = req.body;
     const images = req.files.map(file => file.path);
 
     const newProduct = new Product({
@@ -62,7 +62,8 @@ router.post('/', authenticate, upload.array('images', 5), [
       category,
       images,
       seller: req.user._id,
-      contactInfo: contactInfo || req.user.contactNumber || req.user.email
+      contactInfo: contactInfo || req.user.contactNumber || req.user.email,
+      whatsappNumber: whatsappNumber || req.user.contactNumber || ''
     });
 
     const savedProduct = await newProduct.save();
@@ -182,12 +183,13 @@ router.put('/:id', authenticate, getProduct, authorize('seller'), upload.array('
 
     const product = req.resource;
 
-    const { title, description, price, category, contactInfo } = req.body;
+    const { title, description, price, category, contactInfo, whatsappNumber } = req.body;
     product.title = title || product.title;
     product.description = description || product.description;
     product.price = price || product.price;
     product.category = category || product.category;
     product.contactInfo = contactInfo || product.contactInfo;
+    product.whatsappNumber = whatsappNumber !== undefined ? whatsappNumber : product.whatsappNumber;
 
     if (req.files && req.files.length > 0) { // Update images if new images provided
       const imageUrls = req.files.map(file => file.path);

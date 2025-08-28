@@ -46,6 +46,17 @@ const productSchema = new mongoose.Schema({
     required: [true, 'Contact information is required'],
     trim: true
   },
+  whatsappNumber: {
+    type: String,
+    trim: true,
+    validate: {
+      validator: function(number) {
+        // Allow empty string or valid international phone number format
+        return !number || /^\+?[1-9]\d{1,14}$/.test(number.replace(/\s/g, ''));
+      },
+      message: 'Please provide a valid WhatsApp number with country code (e.g., +1234567890)'
+    }
+  },
   isSold: {
     type: Boolean,
     default: false

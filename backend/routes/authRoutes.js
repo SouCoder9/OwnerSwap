@@ -35,7 +35,7 @@ router.post('/register', [
       });
     }
 
-    const { username, email, password } = req.body;
+    const { username, email, password, contactNumber } = req.body;
 
     // Check if user already exists with email or username
     const existingUser = await User.findOne({
@@ -65,7 +65,8 @@ router.post('/register', [
     const newUser = new User({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      contactNumber: contactNumber || ''
     });
 
     const savedUser = await newUser.save();
@@ -94,7 +95,8 @@ router.post('/register', [
       user: {
         id: savedUser._id,
         username: savedUser.username,
-        email: savedUser.email
+        email: savedUser.email,
+        contactNumber: savedUser.contactNumber
       }
     });
 
@@ -173,7 +175,8 @@ router.post('/login', [
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        contactNumber: user.contactNumber
       }
     });
 
@@ -227,7 +230,8 @@ router.get('/me', async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        contactNumber: user.contactNumber
       }
     });
 

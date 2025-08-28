@@ -47,7 +47,7 @@ const EditProduct = () => {
       const productData = response.data.product;
 
       // Check if user owns this product
-      if (productData.seller._id !== user._id) {
+      if (productData.seller._id !== user.id) {
         setError('You can only edit your own products');
         return;
       }

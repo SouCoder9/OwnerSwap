@@ -174,7 +174,7 @@ const Register = () => {
             {/* Contact Number Field */}
             <div>
               <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number (Optional)
+                WhatsApp Number (Optional)
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -188,12 +188,15 @@ const Register = () => {
                   value={formData.contactNumber}
                   onChange={handleChange}
                   className={`input pl-10 ${formErrors.contactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
-                  placeholder="Your phone number"
+                  placeholder="e.g., +1234567890"
                 />
               </div>
               {formErrors.contactNumber && (
                 <p className="mt-1 text-sm text-red-600">{formErrors.contactNumber}</p>
               )}
+              <p className="text-sm text-gray-500 mt-1">
+                Include country code (e.g., +1 for US, +91 for India)
+              </p>
             </div>
 
             {/* Password Field */}

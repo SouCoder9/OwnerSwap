@@ -14,6 +14,7 @@ import {
   FiTrash2,
   FiCheck
 } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -97,6 +98,21 @@ const ProductDetail = () => {
   );
 
   const isOwner = isAuthenticated && user?.id === product?.seller?._id;
+
+  // Helper function to format WhatsApp number
+  const formatWhatsAppNumber = (number) => {
+    if (!number) return null;
+    // Remove all spaces and special characters except +
+    const cleaned = number.replace(/[^\d+]/g, '');
+    // If it starts with +, use as is, otherwise assume it needs a +
+    return cleaned.startsWith('+') ? cleaned : `+${cleaned}`;
+  };
+
+  // Create WhatsApp message
+  const createWhatsAppMessage = () => {
+    const message = `Hi! I'm interested in your ${product.title} listed for ${formatPrice(product.price)} on OwnerSwap. Is it still available?`;
+    return encodeURIComponent(message);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -215,13 +231,31 @@ const ProductDetail = () => {
             {/* Action Buttons */}
             <div className="space-y-3">
               {!isOwner && !product.isSold && (
-                <a
-                  href={`mailto:${product.contactInfo}?subject=Interest in ${product.title}&body=Hi, I'm interested in your ${product.title} listed for ${formatPrice(product.price)}.`}
-                  className="btn btn-primary w-full flex items-center justify-center space-x-2"
-                >
-                  <FiMail size={16} />
-                  <span>Contact Seller</span>
-                </a>
+                <div className="space-y-2">
+                  {/* WhatsApp Contact Button */}
+                  {product.whatsappNumber && (
+                    <a
+                      href={`https://wa.me/${formatWhatsAppNumber(product.whatsappNumber)}?text=${createWhatsAppMessage()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn bg-green-500 text-white hover:bg-green-600 w-full flex items-center justify-center space-x-2"
+                    >
+                      <FaWhatsapp size={18} />
+                      <span>Contact on WhatsApp</span>
+                    </a>
+                  )}
+                  
+                  {/* Email/General Contact Button */}
+                  <a
+                    href={`mailto:${product.contactInfo}?subject=Interest in ${product.title}&body=Hi, I'm interested in your ${product.title} listed for ${formatPrice(product.price)}.`}
+                    className={`btn w-full flex items-center justify-center space-x-2 ${
+                      product.whatsappNumber ? 'btn-outline' : 'btn-primary'
+                    }`}
+                  >
+                    <FiMail size={16} />
+                    <span>Contact via Email</span>
+                  </a>
+                </div>
               )}
 
               {isOwner && (

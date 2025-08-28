@@ -16,7 +16,8 @@ const CreateProduct = () => {
     description: '',
     price: '',
     category: '',
-    contactInfo: user?.email || ''
+    contactInfo: user?.email || '',
+    whatsappNumber: user?.contactNumber || ''
   });
   const [errors, setErrors] = useState({});
 
@@ -77,6 +78,11 @@ const CreateProduct = () => {
       newErrors.contactInfo = 'Contact information is required';
     }
     
+    // Validate WhatsApp number if provided
+    if (formData.whatsappNumber && !/^\+?[1-9]\d{1,14}$/.test(formData.whatsappNumber.replace(/\s/g, ''))) {
+      newErrors.whatsappNumber = 'Please provide a valid WhatsApp number with country code (e.g., +1234567890)';
+    }
+    
     if (images.length === 0) {
       newErrors.images = 'Please add at least one image';
     }
@@ -102,6 +108,11 @@ const CreateProduct = () => {
       formDataToSend.append('price', parseFloat(formData.price));
       formDataToSend.append('category', formData.category);
       formDataToSend.append('contactInfo', formData.contactInfo.trim());
+      
+      // Add WhatsApp number if provided
+      if (formData.whatsappNumber.trim()) {
+        formDataToSend.append('whatsappNumber', formData.whatsappNumber.trim());
+      }
       
       // Add images
       images.forEach((image, index) => {
@@ -276,25 +287,49 @@ const CreateProduct = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-gray-50 rounded-xl p-6">
-            <label htmlFor="contactInfo" className="block text-lg font-semibold text-gray-800 mb-3">
-              📞 Contact Information *
-            </label>
-            <input
-              type="text"
-              id="contactInfo"
-              name="contactInfo"
-              value={formData.contactInfo}
-              onChange={handleChange}
-              className={`input ${errors.contactInfo ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
-              placeholder="Email or phone number for buyers to contact you"
-            />
-            {errors.contactInfo && (
-              <p className="mt-1 text-sm text-red-600">{errors.contactInfo}</p>
-            )}
-            <p className="text-sm text-gray-500 mt-1">
-              This will be shown to potential buyers
-            </p>
+          <div className="bg-gray-50 rounded-xl p-6 space-y-6">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center">📞 Contact Information</h2>
+            
+            {/* Email/General Contact */}
+            <div>
+              <label htmlFor="contactInfo" className="block text-sm font-medium text-gray-700 mb-1">
+                Email or Phone Number *
+              </label>
+              <input
+                type="text"
+                id="contactInfo"
+                name="contactInfo"
+                value={formData.contactInfo}
+                onChange={handleChange}
+                className={`input ${errors.contactInfo ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                placeholder="Your email or phone number"
+              />
+              {errors.contactInfo && (
+                <p className="mt-1 text-sm text-red-600">{errors.contactInfo}</p>
+              )}
+            </div>
+            
+            {/* WhatsApp Number */}
+            <div>
+              <label htmlFor="whatsappNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                WhatsApp Number (Optional)
+              </label>
+              <input
+                type="tel"
+                id="whatsappNumber"
+                name="whatsappNumber"
+                value={formData.whatsappNumber}
+                onChange={handleChange}
+                className={`input ${errors.whatsappNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                placeholder="e.g., +1234567890"
+              />
+              {errors.whatsappNumber && (
+                <p className="mt-1 text-sm text-red-600">{errors.whatsappNumber}</p>
+              )}
+              <p className="text-sm text-gray-500 mt-1">
+                Include country code for WhatsApp contact button (e.g., +1 for US, +91 for India)
+              </p>
+            </div>
           </div>
 
           {/* Submit Button */}
