@@ -125,8 +125,8 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Header */}
         <div className="mb-8">
           <button
@@ -137,25 +137,32 @@ const CreateProduct = () => {
             <span>Back</span>
           </button>
           
-          <h1 className="text-3xl font-bold text-gray-900">Create New Listing</h1>
-          <p className="text-gray-600 mt-2">
-            Fill out the form below to list your item for sale
-          </p>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Create New Listing</h1>
+            <p className="text-gray-600 mt-3 text-lg">
+              Fill out the form below to list your item for sale
+            </p>
+          </div>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+        <form onSubmit={handleSubmit} className="p-8 space-y-8">
           {/* Global Error */}
           {errors.submit && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-              {errors.submit}
+            <div className="bg-red-50 border-l-4 border-red-400 text-red-700 px-6 py-4 rounded-r-xl">
+              <div className="flex items-center">
+                <div className="ml-3">
+                  <p className="font-medium">{errors.submit}</p>
+                </div>
+              </div>
             </div>
           )}
 
           {/* Images */}
-          <div className="card p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Product Images *
+          <div className="bg-gray-50 rounded-xl p-6">
+            <label className="block text-lg font-semibold text-gray-800 mb-4">
+              📸 Product Images *
             </label>
             <ImageUpload images={images} setImages={setImages} maxImages={5} />
             {errors.images && (
@@ -164,8 +171,8 @@ const CreateProduct = () => {
           </div>
 
           {/* Basic Information */}
-          <div className="card p-6 space-y-4">
-            <h2 className="text-lg font-semibold text-gray-900">Basic Information</h2>
+          <div className="bg-gray-50 rounded-xl p-6 space-y-6">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center">📋 Basic Information</h2>
             
             {/* Title */}
             <div>
@@ -244,9 +251,9 @@ const CreateProduct = () => {
           </div>
 
           {/* Description */}
-          <div className="card p-6">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-              Description *
+          <div className="bg-gray-50 rounded-xl p-6">
+            <label htmlFor="description" className="block text-lg font-semibold text-gray-800 mb-3">
+              📝 Description *
             </label>
             <textarea
               id="description"
@@ -269,9 +276,9 @@ const CreateProduct = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="card p-6">
-            <label htmlFor="contactInfo" className="block text-sm font-medium text-gray-700 mb-1">
-              Contact Information *
+          <div className="bg-gray-50 rounded-xl p-6">
+            <label htmlFor="contactInfo" className="block text-lg font-semibold text-gray-800 mb-3">
+              📞 Contact Information *
             </label>
             <input
               type="text"
@@ -291,11 +298,11 @@ const CreateProduct = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="btn btn-outline flex-1"
+              className="btn btn-outline flex-1 py-3"
               disabled={loading}
             >
               Cancel
@@ -303,16 +310,17 @@ const CreateProduct = () => {
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary flex-1 flex items-center justify-center space-x-2"
+              className="btn btn-primary flex-1 py-3 flex items-center justify-center space-x-2 text-lg"
             >
               {loading ? (
                 <Spinner size="small" color="white" />
               ) : (
-                <span>Create Listing</span>
+                <span>🚀 Create Listing</span>
               )}
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );

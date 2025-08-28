@@ -62,8 +62,12 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent transform rotate-12 translate-y-20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent transform -rotate-12 -translate-y-20"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
               Welcome to{' '}
@@ -76,10 +80,10 @@ const Home = () => {
               within your college community at unbeatable prices.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link
                 to="/products"
-                className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center space-x-2"
+                className="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 <FiSearch size={20} />
                 <span>Browse Products</span>
@@ -88,7 +92,7 @@ const Home = () => {
               {!isAuthenticated && (
                 <Link
                   to="/register"
-                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center space-x-2"
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center space-x-2 backdrop-blur-sm hover:shadow-xl transform hover:-translate-y-1"
                 >
                   <span>Get Started</span>
                   <FiArrowRight size={20} />
@@ -98,7 +102,7 @@ const Home = () => {
               {isAuthenticated && (
                 <Link
                   to="/create-product"
-                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center space-x-2"
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center space-x-2 backdrop-blur-sm hover:shadow-xl transform hover:-translate-y-1"
                 >
                   <span>Sell an Item</span>
                   <FiArrowRight size={20} />
@@ -121,10 +125,10 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {features.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-primary-100 text-primary-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div key={index} className="text-center group">
+                <div className="bg-gradient-to-br from-primary-100 to-primary-200 text-primary-600 rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transform group-hover:-translate-y-2 transition-all duration-300">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -151,14 +155,14 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {categories.map((category, index) => (
               <Link
                 key={index}
                 to={category.link}
-                className="card p-8 hover:shadow-lg transition-shadow text-center group"
+                className="card card-hover p-10 text-center group bg-gradient-to-br from-white to-gray-50"
               >
-                <div className="text-primary-600 mb-4 group-hover:scale-110 transition-transform">
+                <div className="text-primary-600 mb-6 group-hover:scale-125 transition-all duration-300 mx-auto">
                   {category.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -167,9 +171,9 @@ const Home = () => {
                 <p className="text-gray-600 mb-4">
                   {category.description}
                 </p>
-                <span className="text-primary-600 font-medium flex items-center justify-center space-x-1 group-hover:space-x-2 transition-all">
-                  <span>Browse</span>
-                  <FiArrowRight size={16} />
+                <span className="text-primary-600 font-semibold flex items-center justify-center space-x-1 group-hover:space-x-3 transition-all duration-300">
+                  <span>Explore Now</span>
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={16} />
                 </span>
               </Link>
             ))}

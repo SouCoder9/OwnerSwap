@@ -7,6 +7,7 @@ import Register from './components/auth/Register';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import CreateProduct from './pages/CreateProduct';
+import EditProduct from './pages/EditProduct';
 import MyProducts from './pages/MyProducts';
 import PrivateRoute from './components/common/PrivateRoute';
 
@@ -26,6 +27,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <CreateProduct />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/products/:id/edit" 
+              element={
+                <PrivateRoute>
+                  <EditProduct />
                 </PrivateRoute>
               } 
             />

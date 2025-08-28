@@ -196,11 +196,11 @@ const MyProducts = () => {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {products.map((product) => (
-              <div key={product._id} className="card overflow-hidden">
+              <div key={product._id} className="card card-hover overflow-hidden">
                 {/* Image */}
-                <div className="relative h-48 bg-gray-200">
+                <div className="relative h-52 bg-gradient-to-br from-gray-100 to-gray-200">
                   {product.images && product.images.length > 0 ? (
                     <img
                       src={product.images[0]}
@@ -217,28 +217,28 @@ const MyProducts = () => {
                   )}
                   
                   {/* Status Badge */}
-                  <div className="absolute top-2 left-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(product.category)}`}>
+                  <div className="absolute top-3 left-3">
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm ${getCategoryColor(product.category)}`}>
                       {product.category}
                     </span>
                   </div>
 
                   {product.isSold && (
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                      <span className="bg-red-500 text-white px-3 py-1 rounded-full font-semibold">
-                        SOLD
+                    <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center">
+                      <span className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-xl">
+                        SOLD OUT
                       </span>
                     </div>
                   )}
                 </div>
 
                 {/* Content */}
-                <div className="p-4">
-                  <div className="mb-3">
-                    <h3 className="font-semibold text-gray-900 line-clamp-1 mb-1">
+                <div className="p-5">
+                  <div className="mb-4">
+                    <h3 className="font-bold text-gray-900 line-clamp-1 mb-2 text-lg">
                       {product.title}
                     </h3>
-                    <p className="text-2xl font-bold text-primary-600">
+                    <p className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
                       {formatPrice(product.price)}
                     </p>
                   </div>
@@ -276,11 +276,11 @@ const MyProducts = () => {
 
                     <div className="grid grid-cols-2 gap-2">
                       {!product.isSold && (
-                        <button
-                          onClick={() => handleMarkAsSold(product._id)}
-                          disabled={actionLoading[product._id]}
-                          className="btn bg-green-600 text-white hover:bg-green-700 text-xs py-1 flex items-center justify-center space-x-1"
-                        >
+                      <button
+                        onClick={() => handleMarkAsSold(product._id)}
+                        disabled={actionLoading[product._id]}
+                        className="btn btn-success text-xs py-1 flex items-center justify-center space-x-1"
+                      >
                           {actionLoading[product._id] === 'marking' ? (
                             <Spinner size="small" color="white" />
                           ) : (
@@ -295,7 +295,7 @@ const MyProducts = () => {
                       <button
                         onClick={() => handleDelete(product._id, product.title)}
                         disabled={actionLoading[product._id]}
-                        className={`btn bg-red-600 text-white hover:bg-red-700 text-xs py-1 flex items-center justify-center space-x-1 ${
+                        className={`btn btn-danger text-xs py-1 flex items-center justify-center space-x-1 ${
                           !product.isSold ? '' : 'col-span-2'
                         }`}
                       >

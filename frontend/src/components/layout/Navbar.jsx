@@ -45,14 +45,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link 
               to="/" 
-              className="text-2xl font-bold text-primary-600 hover:text-primary-700 transition-colors"
+              className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent hover:from-primary-700 hover:to-primary-800 transition-all duration-300"
               onClick={closeMenu}
             >
               OwnerSwap
@@ -65,14 +65,14 @@ const Navbar = () => {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder="🔍 Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="input pr-10"
+                  className="input pr-12 bg-gray-50 border-gray-200 focus:bg-white"
                 />
                 <button
                   type="submit"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-600 transition-colors duration-200"
                 >
                   <FiSearch size={20} />
                 </button>
@@ -110,11 +110,11 @@ const Navbar = () => {
                   </button>
                   
                   {/* Dropdown Menu */}
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-1">
+                  <div className="absolute right-0 mt-2 w-52 bg-white/90 backdrop-blur-md rounded-xl shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="py-2">
                       <Link
                         to="/my-products"
-                        className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-all duration-200 rounded-lg mx-2"
                         onClick={closeMenu}
                       >
                         <FiPackage size={16} />
@@ -122,7 +122,7 @@ const Navbar = () => {
                       </Link>
                       <button
                         onClick={handleLogout}
-                        className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="flex items-center space-x-3 w-full px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-200 rounded-lg mx-2"
                       >
                         <FiLogOut size={16} />
                         <span>Logout</span>
@@ -184,7 +184,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
+        <div className="md:hidden bg-white/90 backdrop-blur-md border-t border-gray-200">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
               to="/products"
