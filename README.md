@@ -1,7 +1,3 @@
-This is a great, comprehensive project description\! I'll combine the backend and frontend documentation into a single, cohesive **README** for your "OwnerSwap" College Marketplace project, keeping it brief while highlighting the most important features, setup instructions, and project status.
-
------
-
 # OwnerSwap: The College Marketplace
 
 A full-stack web application where college students can buy and sell used products. The project consists of a robust **Node.js/Express.js backend API** and a modern **React/Vite/Tailwind CSS frontend**.
