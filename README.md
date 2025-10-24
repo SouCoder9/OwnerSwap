@@ -24,7 +24,7 @@ You will need **Node.js (v16+), MongoDB, and a Cloudinary account** to run the f
 
 ```bash
 # Clone the repository
-git clone <your-repo-url> OwnerSwap
+git clone https://github.com/SouCoder9/OwnerSwap.git 
 cd OwnerSwap
 
 # Install backend dependencies
