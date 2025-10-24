@@ -65,7 +65,7 @@ const Navbar = () => {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="🔍 Search products..."
+                  placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="input pr-12 bg-gray-50 border-gray-200 focus:bg-white"

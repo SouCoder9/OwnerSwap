@@ -49,14 +49,14 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-900">Connect</h3>
             <div className="flex space-x-4">
               <a
-                href="mailto:support@ownerswap.com"
+                href="mailto:soubhadra1234@gmail.com"
                 className="text-gray-600 hover:text-primary-600 transition-colors"
                 aria-label="Email"
               >
                 <FiMail size={20} />
               </a>
               <a
-                href="https://github.com/yourusername/ownerswap"
+                href="https://github.com/SouCoder9/OwnerSwap.git"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary-600 transition-colors"
@@ -66,13 +66,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-gray-600 text-sm">
-              Questions? Reach out to us at{' '}
-              <a 
-                href="mailto:support@ownerswap.com" 
-                className="text-primary-600 hover:text-primary-700"
-              >
-                support@ownerswap.com
-              </a>
+              Questions? Reach out to us!
             </p>
           </div>
         </div>
