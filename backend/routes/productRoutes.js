@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator');
 const { authenticate, authorize } = require('../middleware/auth');
 const { upload, deleteImage, getPublicIdFromUrl } = require('../config/cloudinary');
 const Product = require('../models/Product');
+const ApiResponse = require('../utils/response');
 
 const router = express.Router();
 
@@ -76,10 +77,7 @@ router.post('/', authenticate, upload.array('images', 5), [
 
   } catch (error) {
     console.error('Error listing product:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error'
-    });
+    return ApiResponse.error(res, 'Internal server error');
   }
 });
 
@@ -102,10 +100,7 @@ router.get('/', async (req, res) => {
 
   } catch (error) {
     console.error('Error fetching products:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error'
-    });
+    return ApiResponse.error(res, 'Internal server error');
   }
 });
 

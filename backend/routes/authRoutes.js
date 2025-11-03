@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
+const ApiResponse = require('../utils/response');
 
 const router = express.Router();
 
@@ -44,16 +45,10 @@ router.post('/register', [
 
     if (existingUser) {
       if (existingUser.email === email) {
-        return res.status(400).json({
-          success: false,
-          message: 'User with this email already exists'
-        });
+        return ApiResponse.error(res, 'User with this email already exists', 400);
       }
       if (existingUser.username === username) {
-        return res.status(400).json({
-          success: false,
-          message: 'Username already taken'
-        });
+        return ApiResponse.error(res, 'Username already taken', 400);
       }
     }
 
@@ -102,10 +97,7 @@ router.post('/register', [
 
   } catch (error) {
     console.error('Registration error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error during registration'
-    });
+    return ApiResponse.error(res, 'Internal server error during registration');
   }
 });
 

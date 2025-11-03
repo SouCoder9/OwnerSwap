@@ -3,7 +3,8 @@ import axios from 'axios';
 // Create axios instance with default config
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-  withCredentials: true, // Important for sending cookies
+  withCredentials: true,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -26,10 +27,11 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    // Handle common errors
+    if (error.code === 'ECONNABORTED') {
+      console.error('Request timeout');
+    }
     if (error.response?.status === 401) {
-      // Unauthorized - redirect to login or clear user state
-      console.log('Unauthorized access - redirecting to login');
+      console.log('Unauthorized access');
     }
     return Promise.reject(error);
   }

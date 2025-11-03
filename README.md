@@ -12,7 +12,7 @@ A full-stack web application where college students can buy and sell used produc
 | **Security** | Input validation (`express-validator`), MongoDB injection protection. | **PrivateRoute** protection, client-side validation. |
 | **Design** | N/A | **Mobile-first responsive design** with **Tailwind CSS**. |
 
-## 🎯 Current Status: Full Marketplace Complete\! 🎉
+## 🎯 Current Status: Full Marketplace Complete! 🎉
 
 All core features, including full **CRUD** for products, **secure authentication**, advanced searching, and a responsive UI, are complete.
 
@@ -20,7 +20,7 @@ All core features, including full **CRUD** for products, **secure authentication
 
 You will need **Node.js (v16+), MongoDB, and a Cloudinary account** to run the full application.
 
-### 1\. Clone & Install
+### 1. Clone & Install
 
 ```bash
 # Clone the repository
@@ -36,7 +36,7 @@ cd ../frontend
 npm install
 ```
 
-### 2\. Configure Environment Variables
+### 2. Configure Environment Variables
 
 Create a `.env` file in the **`backend`** directory based on the `.env.example` and fill in your credentials:
 
@@ -47,7 +47,7 @@ Create a `.env` file in the **`backend`** directory based on the `.env.example` 
 | `CLOUDINARY_CLOUD_NAME` | Your Cloudinary Cloud Name |
 | `CLOUDINARY_API_KEY` / `SECRET` | Your Cloudinary API Key and Secret |
 
-### 3\. Start the Servers
+### 3. Start the Servers
 
 You will need **two separate terminals** to run both the backend and frontend concurrently.
 
@@ -85,17 +85,17 @@ npm run dev
 ```
 OwnerSwap/
 ├── backend/
-│   ├── models/           # MongoDB schemas
-│   ├── routes/           # Express API endpoints
-│   ├── middleware/       # Auth/Error handling
-│   └── server.js         # Main entry point
+│   ├── models/           # MongoDB schemas
+│   ├── routes/           # Express API endpoints
+│   ├── middleware/       # Auth/Error handling
+│   └── server.js         # Main entry point
 └── frontend/
-   ├── src/
-   │   ├── components/     # Reusable UI elements
-   │   ├── context/        # Global state management
-   │   ├── pages/          # Router-defined components
-   │   └── services/       # API integration layer (Axios)
-   └── tailwind.config.js
+   ├── src/
+   │   ├── components/     # Reusable UI elements
+   │   ├── context/        # Global state management
+   │   ├── pages/          # Router-defined components
+   │   └── services/       # API integration layer (Axios)
+   └── tailwind.config.js
 ```
 
 ## 📄 License
@@ -104,4 +104,4 @@ This project is licensed under the **MIT License**.
 
 -----
 
-Let me know if you'd like to dive deeper into any specific section, like the database schema or the frontend state management\!
+Let me know if you'd like to dive deeper into any specific section, like the database schema or the frontend state management!

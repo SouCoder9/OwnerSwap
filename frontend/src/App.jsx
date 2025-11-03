@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Layout from './components/layout/Layout';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import Home from './pages/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -13,9 +14,10 @@ import PrivateRoute from './components/common/PrivateRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Layout>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -49,9 +51,10 @@ function App() {
             {/* Catch all route - 404 */}
             <Route path="*" element={<div className="min-h-screen flex items-center justify-center"><div className="text-center"><h1 className="text-4xl font-bold text-gray-900 mb-4">404 - Page Not Found</h1><p className="text-gray-600">The page you're looking for doesn't exist.</p></div></div>} />
           </Routes>
-        </Layout>
-      </Router>
-    </AuthProvider>
+          </Layout>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
