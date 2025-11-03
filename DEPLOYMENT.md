@@ -1,10 +1,14 @@
-# OwnerSwap Deployment Guide
+# OwnerSwap FREE Deployment Guide
 
-## Free Deployment Stack
-- **Backend**: Railway (Free tier)
-- **Frontend**: Vercel (Free tier)
+## 100% FREE Deployment Stack
+- **Backend**: Render (Free tier - 750 hours/month)
+- **Frontend**: Vercel (Free tier - Unlimited)
 - **Database**: MongoDB Atlas (Free tier - 512MB)
-- **Images**: Cloudinary (Free tier)
+- **Images**: Cloudinary (Free tier - 25GB)
+
+## Alternative FREE Options:
+- **Backend**: Cyclic, Railway (hobby), Heroku (with GitHub Student)
+- **Frontend**: Netlify, GitHub Pages
 
 ## Step 1: MongoDB Atlas Setup
 1. Go to https://www.mongodb.com/atlas
@@ -17,13 +21,14 @@
 2. Create free account
 3. Get: Cloud Name, API Key, API Secret
 
-## Step 3: Backend Deployment (Railway)
-1. Go to https://railway.app
+## Step 3: Backend Deployment (Render - FREE)
+1. Go to https://render.com
 2. Connect GitHub repo
-3. Deploy backend folder
-4. Add environment variables
+3. Create "Web Service"
+4. Select backend folder
+5. Add environment variables
 
-## Step 4: Frontend Deployment (Vercel)
+## Step 4: Frontend Deployment (Vercel - FREE)
 1. Go to https://vercel.com
 2. Connect GitHub repo
 3. Deploy frontend folder
